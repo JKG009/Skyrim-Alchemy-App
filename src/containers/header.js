@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Header } from "../components";
-import { data } from "../data/data";
+import { ingredientList } from "../data";
 import { useDispatch, useSelector } from "react-redux";
 import { updateSelectedIngredient } from "../features/selectedIngredient/selectedIngredientSlice";
 import { updateSelectedEffect } from "../features/selectedEffect/selectedEffectSlice";
+import { resetPrimaryIngredient } from "../features/primaryIngredient/primaryIngredientSlice";
 import {
   toggleFishable,
   togglePlantable,
@@ -21,13 +22,13 @@ export default function HeaderContainer() {
   );
   const storedEffect = useSelector((state) => state.selectedEffect.effect);
 
-  const ingredientDataList = data.map((ingredient) => (
+  const ingredientDataList = ingredientList.map((ingredient) => (
     <option key={ingredient.name} value={ingredient.name}>
       {ingredient.name}
     </option>
   ));
   const effectList = [];
-  data.forEach((ingredient) =>
+  ingredientList.forEach((ingredient) =>
     ingredient.effects.forEach((effect) => {
       if (!effectList.includes(effect)) {
         effectList.push(effect);
@@ -61,6 +62,7 @@ export default function HeaderContainer() {
             value={storedIngredient}
             onChange={(e) => {
               dispatch(updateSelectedIngredient(e.target.value));
+              dispatch(resetPrimaryIngredient());
               if (storedEffect !== "") {
                 dispatch(updateSelectedEffect(""));
               }
@@ -80,6 +82,7 @@ export default function HeaderContainer() {
             value={storedEffect}
             onChange={(e) => {
               dispatch(updateSelectedEffect(e.target.value));
+              dispatch(resetPrimaryIngredient());
               if (storedIngredient !== "") {
                 dispatch(updateSelectedIngredient(""));
               }
@@ -96,8 +99,8 @@ export default function HeaderContainer() {
             dispatch(toggleFishable());
             setFishableActive(!fishableActive);
             if (plantableActive) {
-              setPlantableActive(false)
-              dispatch(togglePlantable())
+              setPlantableActive(false);
+              dispatch(togglePlantable());
             }
           }}
           active={fishableActive}
@@ -109,8 +112,8 @@ export default function HeaderContainer() {
             dispatch(togglePlantable());
             setPlantableActive(!plantableActive);
             if (fishableActive) {
-              setFishableActive(false)
-              dispatch(toggleFishable())
+              setFishableActive(false);
+              dispatch(toggleFishable());
             }
           }}
           active={plantableActive}

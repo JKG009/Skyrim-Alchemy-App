@@ -49,11 +49,11 @@ export const TableBody = styled.tbody`
 `
 
 export const TitleTableRow = styled.tr`
-
+    
 `
 
 export const TableRow = styled.tr`
-
+    background-color: ${({active}) => active && "rgba(210, 210, 210, 0.5)"};    
 `
 
 export const TableData = styled.td`

@@ -1,5 +1,11 @@
 import React from "react";
-import { data } from "../../data/data";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  resetPrimaryIngredient,
+  updatePrimaryIngredient,
+} from "../../features/primaryIngredient/primaryIngredientSlice";
+import { updateSelectedEffect } from "../../features/selectedEffect/selectedEffectSlice";
+import { updateSelectedIngredient } from "../../features/selectedIngredient/selectedIngredientSlice";
 import {
   MainContainer,
   Container,
@@ -44,18 +50,37 @@ Main.TableData = function MainTableData({ children, ...restProps }) {
   return <TableData {...restProps}>{children}</TableData>;
 };
 
-Main.TableRow = function MainTableRow({ children, ingredientObject, ...restProps }) {
-  if (ingredientObject) {
-    return (
-      <TableRow {...restProps}>
-        <Main.TableData>{ingredientObject.name}</Main.TableData>
-        {ingredientObject.effects.map((effect) => (
-          <Main.TableData key={`${ingredientObject.name} ${effect}`}>
-            {effect}
-          </Main.TableData>
-        ))}
-      </TableRow>
-    );
-  }
-  return <TableRow {...restProps}>{children}</TableRow>
+Main.TableRow = function MainTableRow({
+  children,
+  ingredientObject,
+  ...restProps
+}) {
+  const dispatch = useDispatch();
+  const primaryIngredient = useSelector(
+    (state) => state.primaryIngredient.primaryIngredient
+  );
+  const handleClick = (ingredient) => {
+    if (primaryIngredient === ingredient) {
+      return dispatch(resetPrimaryIngredient());
+    }
+    dispatch(updateSelectedEffect(""));
+    dispatch(updateSelectedIngredient(""));
+    dispatch(updatePrimaryIngredient(ingredient));
+  };
+
+  return (
+    <TableRow
+      active={primaryIngredient.name === ingredientObject.name && true}
+      {...restProps}
+    >
+      <Main.TableData onClick={() => handleClick(ingredientObject)}>
+        {ingredientObject.name}
+      </Main.TableData>
+      {ingredientObject.effects.map((effect) => (
+        <Main.TableData key={`${ingredientObject.name} ${effect}`}>
+          {effect}
+        </Main.TableData>
+      ))}
+    </TableRow>
+  );
 };

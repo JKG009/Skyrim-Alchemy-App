@@ -1,26 +1,20 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Main } from "../components";
-import { data } from "../data/data";
-import { updateSelectedEffect } from "../features/selectedEffect/selectedEffectSlice";
-import { updateSelectedIngredient } from "../features/selectedIngredient/selectedIngredientSlice";
+import { ingredientList } from "../data";
 
 export default function MainContainer() {
-  const [primaryIngredient, setPrimaryIngredient] = useState({});
-  const dispatch = useDispatch();
   const selectedIngredient = useSelector(
     (state) => state.selectedIngredient.ingredient
   );
   const selectedEffect = useSelector((state) => state.selectedEffect.effect);
-
-  const handleClick = (ingredient) => {
-    setPrimaryIngredient(ingredient);
-    dispatch(updateSelectedEffect(""), updateSelectedIngredient(""));
-  };
+  const primaryIngredient = useSelector(
+    (state) => state.primaryIngredient.primaryIngredient
+  );
 
   const renderTable = () => {
     if (selectedIngredient) {
-      return data
+      return ingredientList
         .filter((ingredientObject) =>
           ingredientObject.name
             .toUpperCase()
@@ -34,7 +28,7 @@ export default function MainContainer() {
         ));
     }
     if (selectedEffect) {
-      return data
+      return ingredientList
         .filter((ingredientObject) =>
           ingredientObject.effects.some((effect) =>
             effect.toUpperCase().includes(selectedEffect.toUpperCase())
@@ -48,7 +42,7 @@ export default function MainContainer() {
         ));
     }
     if (Object.keys(primaryIngredient).length > 0) {
-      return data
+      return ingredientList
         .filter((ingredientObject) =>
           ingredientObject.effects.some((effect) =>
             primaryIngredient.effects.some((effect2) => effect2 === effect)
@@ -61,15 +55,11 @@ export default function MainContainer() {
           />
         ));
     }
-    return data.map((ingredientObject) => (
-      <Main.TableRow key={ingredientObject.name}>
-        <Main.TableData onClick={() => handleClick(ingredientObject)}>
-          {ingredientObject.name}
-        </Main.TableData>
-        {ingredientObject.effects.map((effect) => (
-          <Main.TableData>{effect}</Main.TableData>
-        ))}
-      </Main.TableRow>
+    return ingredientList.map((ingredientObject) => (
+      <Main.TableRow
+        key={ingredientObject.name}
+        ingredientObject={ingredientObject}
+      />
     ));
   };
 
