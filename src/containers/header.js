@@ -27,6 +27,7 @@ export default function HeaderContainer() {
       {ingredient.name}
     </option>
   ));
+
   const effectList = [];
   ingredientList.forEach((ingredient) =>
     ingredient.effects.forEach((effect) => {
@@ -97,6 +98,7 @@ export default function HeaderContainer() {
         <Header.Button
           onClick={() => {
             dispatch(toggleFishable());
+            dispatch(resetPrimaryIngredient());
             setFishableActive(!fishableActive);
             if (plantableActive) {
               setPlantableActive(false);
@@ -110,6 +112,7 @@ export default function HeaderContainer() {
         <Header.Button
           onClick={() => {
             dispatch(togglePlantable());
+            dispatch(resetPrimaryIngredient());
             setPlantableActive(!plantableActive);
             if (fishableActive) {
               setFishableActive(false);
