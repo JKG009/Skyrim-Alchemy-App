@@ -40,20 +40,32 @@ export const TableHead = styled.thead`
 
 export const TableBody = styled.tbody`
     tr {
-        transition: all 0.3s;
-        border-bottom: 1px grey solid;
-        :hover{
-            background: rgba( 210, 210, 210, 0.5);
+        @keyframes fadeIn {
+            from {
+                transform: translateX(-10px)
+            }
+            to {
+                transform: translateX(0)
+            }
         }
-    };
-`
+        
+        animation-name: fadeIn;
+        animation-duration: 0.7s;
+        transition: background-color 0.4s;
+
+        :hover {
+        background-color: rgba( 210, 210, 210, 0.5);
+        }
+    }
+`;
 
 export const TitleTableRow = styled.tr`
     
 `
 
 export const TableRow = styled.tr`
-    background-color: ${({active}) => active && "rgba(210, 210, 210, 0.5)"};    
+    border-bottom: 1px grey solid;
+    background-color: ${({active}) => active && "rgba( 210, 210, 210, 0.5)"};
 `
 
 export const TableData = styled.td`

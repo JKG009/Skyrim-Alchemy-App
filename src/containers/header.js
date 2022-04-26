@@ -132,6 +132,31 @@ export default function HeaderContainer() {
           i
         </Header.Info>
       </Header.ButtonContainer>
+      <Header.InfoContainer show={infoActive}>
+        <Header.InfoTitle>How To Use</Header.InfoTitle>
+        <Header.InfoText>
+          Begin by typing in the Ingredient text box{" "}
+          <strong>or</strong> the Effect text box and select the option that
+          you're looking for.
+        </Header.InfoText>
+        <Header.InfoText>
+          Searching for an ingredient will show you the effects that the
+          ingredient has. Searching for an effect will show you all the
+          ingredients that has that specific effect.
+        </Header.InfoText>
+        <Header.InfoText>
+          Alternatively, you can <strong>click</strong> on the name of an
+          ingredient in the table and the table will show you every ingredient
+          that the ingredient you selected can be combined with. Clicking on the same
+          ingredient name again or changing an input in the header will undo this function.
+        </Header.InfoText>
+        <Header.InfoText>
+          Clicking either the <strong>Fishable or Plantable</strong> button will
+          filter out the ingredients to show you those which can be
+          fishable/plantable. Keep in mind that you will need the Hearthfire DLC
+          to plant ingredients and the Anniversary Edition to be able to fish.
+        </Header.InfoText>
+      </Header.InfoContainer>
     </Header>
   );
 }

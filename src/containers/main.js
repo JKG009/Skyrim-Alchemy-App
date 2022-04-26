@@ -19,6 +19,35 @@ export default function MainContainer() {
   );
 
   const renderTable = () => {
+    if ((fishable || plantable) && Object.keys(primaryIngredient).length > 0) {
+      return fishable
+        ? ingredientList
+            .filter((ingredientObject) => ingredientObject.fishable)
+            .filter((ingredientObject) =>
+              ingredientObject.effects.some((effect) =>
+                primaryIngredient.effects.some((effect2) => effect2 === effect)
+              )
+            )
+            .map((ingredientObject) => (
+              <Main.TableRow
+                key={ingredientObject.name}
+                ingredientObject={ingredientObject}
+              />
+            ))
+        : ingredientList
+            .filter((ingredientObject) => ingredientObject.plantable)
+            .filter((ingredientObject) =>
+              ingredientObject.effects.some((effect) =>
+                primaryIngredient.effects.some((effect2) => effect2 === effect)
+              )
+            )
+            .map((ingredientObject) => (
+              <Main.TableRow
+                key={ingredientObject.name}
+                ingredientObject={ingredientObject}
+              />
+            ));
+    }
     if (
       (fishable || plantable) &&
       (selectedIngredient || selectedEffect) === ""

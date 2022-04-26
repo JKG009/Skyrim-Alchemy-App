@@ -17,10 +17,6 @@ export const HeaderContainer = styled.div`
     @media (max-width: 1450px) {
         min-height: 120px;
     }
-
-    @media (max-width: 1080px) {
-
-    }
 `
 
 export const TitleContainer = styled.div`
@@ -68,10 +64,11 @@ export const InputContainer = styled.div`
         padding-top: 1rem;
         width: 35%;
     }   
-    @media (max-width: 1080px) {
+    
+    @media (max-width: 1190px) {
         margin-left: -1rem;
     }
-`
+`;
 
 export const LabelContainer = styled.div`
     min-width: 380px;
@@ -141,8 +138,36 @@ export const Button = styled.button`
 
 export const Info = styled(Button)`
     border-radius: 50%;
+    z-index: 10;
 
     @media (max-width: 1450px){
         margin-right: 2rem;
     }
 `;
+
+export const InfoContainer = styled.div`
+    opacity: ${({ show }) => (show ? "100" : "0")};
+    z-index: ${({ show }) => (show ? "0" : "-1")};
+    position: absolute;
+    background-color: black;
+    border: white solid 2px;
+    border-radius: 3px;
+    margin-top: 38.5rem;
+    right: 3.5%;
+    width: 400px;
+    padding: 0 1rem;
+    transition: opacity 0.5s;
+
+    @media (max-width: 1500px){
+        right: 2%;
+    }
+`;
+
+export const InfoTitle = styled.h2`
+
+`
+
+export const InfoText = styled.p`
+    line-height: 1.5rem;
+    font-size: 1.2rem;
+`

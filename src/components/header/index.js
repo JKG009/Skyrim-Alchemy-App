@@ -12,6 +12,9 @@ import {
   ButtonContainer,
   Button,
   Info,
+  InfoContainer,
+  InfoTitle,
+  InfoText,
 } from "./styles/header";
 
 export default function Header({ children }) {
@@ -63,4 +66,16 @@ Header.Button = function HeaderButton({ children, ...restProps }) {
 
 Header.Info = function HeaderInfo({ children, ...restProps }) {
   return <Info {...restProps}>{children}</Info>;
+};
+
+Header.InfoContainer = function HeaderInfoContainer({ children, ...restProps }) {
+  return <InfoContainer {...restProps}>{children}</InfoContainer>;
+};
+
+Header.InfoTitle = function HeaderInfoTitle({ children }) {
+  return <InfoTitle>{children}</InfoTitle>;
+};
+
+Header.InfoText = function HeaderInfoText({ children }) {
+  return <InfoText>{children}</InfoText>;
 };
