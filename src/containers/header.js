@@ -17,10 +17,10 @@ export default function HeaderContainer() {
   const [plantableActive, setPlantableActive] = useState(false);
   const [infoActive, setInfoActive] = useState(false);
 
-  const storedIngredient = useSelector(
+  const selectedIngredient = useSelector(
     (state) => state.selectedIngredient.ingredient
   );
-  const storedEffect = useSelector((state) => state.selectedEffect.effect);
+  const selectedEffect = useSelector((state) => state.selectedEffect.effect);
 
   const ingredientDataList = ingredientList.map((ingredient) => (
     <option key={ingredient.name} value={ingredient.name}>
@@ -60,11 +60,11 @@ export default function HeaderContainer() {
             id="ingredient"
             name="ingredient"
             list="ingredientList"
-            value={storedIngredient}
+            value={selectedIngredient}
             onChange={(e) => {
               dispatch(updateSelectedIngredient(e.target.value));
               dispatch(resetPrimaryIngredient());
-              if (storedEffect !== "") {
+              if (selectedEffect !== "") {
                 dispatch(updateSelectedEffect(""));
               }
             }}
@@ -80,11 +80,11 @@ export default function HeaderContainer() {
             id="effect"
             name="effect"
             list="effectList"
-            value={storedEffect}
+            value={selectedEffect}
             onChange={(e) => {
               dispatch(updateSelectedEffect(e.target.value));
               dispatch(resetPrimaryIngredient());
-              if (storedIngredient !== "") {
+              if (selectedIngredient !== "") {
                 dispatch(updateSelectedIngredient(""));
               }
             }}
@@ -152,7 +152,7 @@ export default function HeaderContainer() {
         </Header.InfoText>
         <Header.InfoText>
           Clicking either the <strong>Fishable or Plantable</strong> button will
-          filter out the ingredients to show you those which can be
+          filter out the ingredients to show you those which are
           fishable/plantable. Keep in mind that you will need the Hearthfire DLC
           to plant ingredients and the Anniversary Edition to be able to fish.
         </Header.InfoText>

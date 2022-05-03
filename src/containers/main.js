@@ -4,19 +4,10 @@ import { Main } from "../components";
 import { ingredientList } from "../data";
 
 export default function MainContainer() {
-  const selectedIngredient = useSelector(
-    (state) => state.selectedIngredient.ingredient
-  );
+  const selectedIngredient = useSelector((state) => state.selectedIngredient.ingredient);
   const selectedEffect = useSelector((state) => state.selectedEffect.effect);
-  const fishable = useSelector(
-    (state) => state.toggleFishablePlantable.fishable
-  );
-  const plantable = useSelector(
-    (state) => state.toggleFishablePlantable.plantable
-  );
-  const primaryIngredient = useSelector(
-    (state) => state.primaryIngredient.primaryIngredient
-  );
+  const { fishable, plantable } = useSelector((state) => state.toggleFishablePlantable);
+  const { primaryIngredient } = useSelector((state) => state.primaryIngredient);
 
   const renderTable = () => {
     if ((fishable || plantable) && Object.keys(primaryIngredient).length > 0) {
