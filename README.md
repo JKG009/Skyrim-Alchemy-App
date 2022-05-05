@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# Skyrim Alchemy App
+A tool that helps any aspiring alchemist!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### About
+For those who don't know, Skyrim is the fifth installment of the popular Elder Scrolls video game series. A game that I have played since its release in 2011.
 
-## Available Scripts
+The game comes with a leveling system where you can improve skills by using said skill. There are about 18 different skills you can improve on. Alchemy is related to potion/poison making. Using ingredients you find in the world either from plants, enemy loot, fish, etc, to make a potion. To make a potion, you must combine two <b>different</b> ingredients that has the same effect. Combining two ingredient that has no similar effects will not return anything. Either way, you will use up the ingredient and will have to find a new one to try again.  
+Each ingredient has 4 different effects that starts off hidden from the player. The first effect can easily be revealed when the player consumes the item. However, the other three effects can only be discovered when you combine ingredients together through trail and error and hope you get a match.
 
-In the project directory, you can run:
+In all the years of playing, many players like myself have never tried to use the Alchemy skill tree properly because of how complicated and user-unfriendly the skill is. Even after discovering all the effects of all the ingredients in the game, unless you have the ingredient in your inventory the game has no way of showing:
+ - the player what effects an ingredient has,
+ - what ingredients has a specific effect,
+ - a player what two ingredient can combined together unless the player so happens to have a matching ingredient in his/her inventory.
 
-### `npm start`
+Yes, you could go on google search or use the game's wiki but even that isn't simple as you have to go through multiple pages and it doesn't always show you a full list of what you're looking for. But with this tool, everything you need is in one place and you can quickly find what you're looking for.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Project Description
+Project was made with HTML, CSS and Javascript. Utilizing React, React-Redux and styled-components.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### How to run
+This project was made using create-react-app. You will need to run it on your localhost using npm start.
 
-### `npm test`
+### Misc Information
+When I thought of this idea for a project, I didn't expect someone to have made something exactly the way I imagined it, I was only look for an API for the data.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Reddit post: https://www.reddit.com/r/skyrim/comments/rm1sg6/i_made_an_alchemyhelperapp/
 
-### `npm run build`
+Luckily, the user shared the JSON data and allowed its use but it didn't seem to allow an actual API call to fetch the data which was unfortunate as I wanted to use createAsyncThunk from Redux Toolkit for this project.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+It was my first time using Redux and there were things such as naming conventions and folder structures I wasn't sure on. Looking back, I could have placed some of my redux slices together as a singluar slice and I could have filtered the ingredient data in a Redux slice and changing the data output based on what input was changed before mapping over the array and rendering it in my main file.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+All in all, this was a small project and there wasn't many features I could implement to allow me to use more of Redux. But it gave me a greater understand to it and it's benefit over using useContext from React.
